@@ -1,9 +1,9 @@
 from setuptools import find_packages, setup
 
 __docs__ = "NovAna (Novelty Analysis) is a cheminformatics tool that " \
-            "allows decomposing molecules into their scaffolds and shapes " \
-            "using a method similar to that described in by Wills and Lipkus in " \
-            "ACS Med. Chem. Lett. 2020, 11, 2114-2119."
+           "allows decomposing molecules into their scaffolds and shapes " \
+           "using a method similar to that described in by Wills and Lipkus in " \
+           "ACS Med. Chem. Lett. 2020, 11, 2114-2119."
 
 # read the contents of your README file
 from pathlib import Path

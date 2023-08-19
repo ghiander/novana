@@ -90,12 +90,10 @@ class HydrogenAdjuster(object):
         if hs_to_remove <= atom_props.explict_hs_num and hs_to_remove > 0:
             atom.SetNumExplicitHs(atom_props.explict_hs_num - hs_to_remove)
             atom.SetFormalCharge(0)
-        # TODO: Restore
-        # Chem.SanitizeMol(self.mol)
-        # Chem.rdmolops.SanitizeFlags.SANITIZE_NONE
+        Chem.SanitizeMol(self.mol)
+        Chem.rdmolops.SanitizeFlags.SANITIZE_NONE
 
     def add_hydrogens(self, atom, atom_props, bond, bond_type):
-        """"""
         if bond_type == 1.5:
             bond.SetBondType(Chem.rdchem.BondType.SINGLE)
         atom.SetNumExplicitHs(atom_props.explict_hs_num + 1)
