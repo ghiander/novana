@@ -1,0 +1,2 @@
+class NovanaError(Exception):
+    pass
