@@ -7,5 +7,8 @@ build:
 upload_test:
 	twine upload -r testpypi dist/*
 
+upload:
+	twine upload -r pypi dist/*
+
 test:
 	pytest -svv

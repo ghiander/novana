@@ -14,6 +14,7 @@ For a given SMILES input:
 Novana also deals with mixtures automatically by extracting the largest fragment containing rings and using it as input to the decomposition. If no structures with rings are found in the input SMILES, Novana throws an error.
 
 ## How to install the tool
+Novana can be installed from pypi (https://pypi.org/project/novana).
 ```bash
 pip install novana
 ```
