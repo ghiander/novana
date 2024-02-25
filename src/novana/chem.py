@@ -1,13 +1,14 @@
 from rdkit import Chem
 from rdkit.Chem import rdMolDescriptors
 from novana.exception import NovanaError
+from novana.exception import NonCyclicMoleculeError
 
 
-class MoleculeBuilder(object):
+class CyclicMoleculeBuilder(object):
     @staticmethod
     def create_rwmol_from_smiles(smiles, flatten_mol):
         """Flattens and creates an editable molecule."""
-        rwmol = MoleculeBuilder._create_rwmol_from_smiles(smiles, flatten_mol)
+        rwmol = CyclicMoleculeBuilder._create_rwmol_from_smiles(smiles, flatten_mol)
         if rwmol is None:
             raise NovanaError("The molecule was not created for "
                               f"the input '{smiles}'")
@@ -18,12 +19,12 @@ class MoleculeBuilder(object):
         """Business logic for rwmol creation."""
         if isinstance(smiles, str):
             if flatten_mol:
-                smiles = MoleculeBuilder._remove_stereochemistry_from_smiles(
+                smiles = CyclicMoleculeBuilder._remove_stereochemistry_from_smiles(
                     smiles)
             mol = Chem.MolFromSmiles(smiles)
-            mol = MoleculeBuilder._keep_largest_fragment(mol)
             if mol is None:
                 return None
+            mol = CyclicMoleculeBuilder._keep_largest_fragment(mol)
             return Chem.RWMol(mol)
 
     @staticmethod
@@ -45,4 +46,4 @@ class MoleculeBuilder(object):
                 if rdMolDescriptors.CalcNumRings(m) > 0:
                     return m
             # If no molecules with rings
-            return None
+            raise NonCyclicMoleculeError()

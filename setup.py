@@ -1,9 +1,8 @@
 from setuptools import find_packages, setup
 
 __docs__ = "NovAna (Novelty Analysis) is a cheminformatics tool that " \
-           "allows decomposing molecules into their scaffolds and shapes " \
-           "using a method similar to that described in by Wills and Lipkus in " \
-           "ACS Med. Chem. Lett. 2020, 11, 2114-2119."
+           "that extends the decomposition of molecules into " \
+           "Bemis-Murcko frameworks (J. Med. Chem. 1996, 39, 15, 2887-2893)."
 
 # read the contents of your README file
 from pathlib import Path
@@ -13,7 +12,7 @@ long_description = (this_directory / "README.md").read_text()
 setup(
     name="novana",
     packages=find_packages("src"),
-    version="0.1.2",
+    version="0.2.0",
     description=__docs__,
     long_description=long_description,
     long_description_content_type='text/markdown',

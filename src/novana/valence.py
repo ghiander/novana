@@ -68,8 +68,8 @@ class HydrogenAdjuster(object):
                     # If total valence is greater than default, hydrogens
                     # need to be removed and charges neutralised
                     if atom_props.total_valence > atom_props.default_valence:
-                        self.remove_hydrogens(self, atom, atom_props,
-                                              bond_type)
+                        HydrogenAdjuster.remove_hydrogens(atom, atom_props,
+                                                          bond_type)
 
                     # If total valence is smaller than default, hydrogens
                     # need to be added and charges neutralised
@@ -83,15 +83,13 @@ class HydrogenAdjuster(object):
                     break
 
     @staticmethod
-    def remove_hydrogens(self, atom, atom_props, bond_type):
+    def remove_hydrogens(atom, atom_props, bond_type):
         hs_to_remove = int(
             ceil((atom_props.total_valence - atom_props.default_valence)
                  / bond_type))
         if hs_to_remove <= atom_props.explict_hs_num and hs_to_remove > 0:
             atom.SetNumExplicitHs(atom_props.explict_hs_num - hs_to_remove)
             atom.SetFormalCharge(0)
-        Chem.SanitizeMol(self.mol)
-        Chem.rdmolops.SanitizeFlags.SANITIZE_NONE
 
     def add_hydrogens(self, atom, atom_props, bond, bond_type):
         if bond_type == 1.5:

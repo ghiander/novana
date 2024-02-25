@@ -75,7 +75,8 @@ class TerminalAtomRemover(object):
         return atom
 
 
-class SingleBondedCarborConverter(object):
+class AtomConverter:
+    """Interface for specialised converters."""
     def __init__(self, rwmol):
         self.mol = rwmol
 
@@ -84,17 +85,53 @@ class SingleBondedCarborConverter(object):
         return self.mol
 
     def convert(self):
-        """Converts all atoms into single-bonded carbons."""
+        pass
+
+
+class SingleBondedAtomConverter(AtomConverter):
+    def convert(self):
+        """Converts all atoms into single-bonded."""
         for bond in list(self.mol.GetBonds()):
             bond.SetBondType(Chem.BondType.SINGLE)
             bond.SetIsAromatic(False)
             for atom in (bond.GetBeginAtom(), bond.GetEndAtom()):
-                SingleBondedCarborConverter._convert_atom(atom)
+                self._change_properties(atom)
                 break
 
-    @staticmethod
-    def _convert_atom(atom):
+    def _change_properties(self, atom):
         atom.SetIsAromatic(False)
-        atom.SetAtomicNum(6)
         atom.SetFormalCharge(0)
         atom.SetNumExplicitHs(0)
+
+
+class SingleBondedCarbonConverter(SingleBondedAtomConverter):
+    def _change_properties(cls, atom):
+        atom.SetIsAromatic(False)
+        atom.SetFormalCharge(0)
+        atom.SetNumExplicitHs(0)
+        atom.SetAtomicNum(6)
+
+
+class HeteroAtomConverter(AtomConverter):
+    NON_HETERO_ATOM_NUMS = [
+        Chem.Atom("H").GetAtomicNum(),
+        Chem.Atom("C").GetAtomicNum()]
+
+    def convert(self):
+        """Converts hetero atoms into stars."""
+        for bond in list(self.mol.GetBonds()):
+            for atom in (bond.GetBeginAtom(), bond.GetEndAtom()):
+                self._change_properties(atom)
+                break
+
+    def _change_properties(self, atom):
+        if self._is_hetero_atom(atom):
+            atom.SetAtomicNum(0)
+            atom.SetNumExplicitHs(0)
+            atom.UpdatePropertyCache()
+
+    def _is_hetero_atom(self, atom):
+        if atom.GetAtomicNum() not in \
+                HeteroAtomConverter.NON_HETERO_ATOM_NUMS:
+            return True
+        return False
