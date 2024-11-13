@@ -10,7 +10,7 @@ def get_logger(name):
 
     """
     log = logging.getLogger(name)
-    if os.environ.get("NOVANA_LOG_LEVEL") == "DEBUG":
+    if os.environ.get("NOVANA_LOG_LEVEL", "").upper() == "DEBUG":
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)

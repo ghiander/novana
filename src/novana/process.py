@@ -1,3 +1,4 @@
+from novana.valence import HydrogenAdjuster
 from rdkit import Chem
 
 
@@ -55,24 +56,11 @@ class TerminalAtomRemover(object):
 
     def _remove_single_bonded_atom_from_mol(self, single_bonded_atom,
                                             neighbour_atom, bond):
-        neighbour_atom = \
-            TerminalAtomRemover._adjust_atom_hs_before_split(
-                neighbour_atom, bond)
+        HydrogenAdjuster.adjust_atom_hs_before_split(
+            neighbour_atom, bond)
         self.mol.RemoveBond(single_bonded_atom.GetIdx(),
                             neighbour_atom.GetIdx())
         self.mol.RemoveAtom(single_bonded_atom.GetIdx())
-
-    @staticmethod
-    def _adjust_atom_hs_before_split(atom, bond):
-        """
-        Increase the explicit hydrogens of an
-        atom by the rounded value of its bond type.
-
-        """
-        atom.SetNumExplicitHs(
-            atom.GetNumExplicitHs()
-            + int(bond.GetBondTypeAsDouble()))
-        return atom
 
 
 class AtomConverter:

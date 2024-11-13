@@ -4,7 +4,7 @@ from novana.exception import NovanaError
 from novana.exception import NonCyclicMoleculeError
 
 
-class CyclicMoleculeBuilder(object):
+class CyclicMoleculeBuilder:
     @staticmethod
     def create_rwmol_from_smiles(smiles, flatten_mol):
         """Flattens and creates an editable molecule."""

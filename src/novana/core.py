@@ -22,6 +22,11 @@ def adjust_hydrogens(rwmol):
     return HydrogenAdjuster(rwmol).process_and_return()
 
 
+def adjust_atom_hs_before_split(rwmol, bond):
+    """Adjusts hydrogens in the molecule using heuristics."""
+    return HydrogenAdjuster.adjust_atom_hs_before_split(rwmol, bond)
+
+
 def recursively_remove_single_bonded_atoms(rwmol):
     """Removes recursively all single-bonded atoms and their bonds."""
     return TerminalAtomRemover(rwmol).process_and_return()
@@ -38,5 +43,5 @@ def convert_into_single_bonded_carbons(rwmol):
 
 
 def convert_heteroatoms_to_stars(rwmol):
-    """TODO..."""
+    """Converts all heteroatoms into stars."""
     return HeteroAtomConverter(rwmol).process_and_return()

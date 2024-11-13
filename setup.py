@@ -12,7 +12,7 @@ long_description = (this_directory / "README.md").read_text()
 setup(
     name="novana",
     packages=find_packages("src"),
-    version="0.2.0",
+    version="0.3.0",
     description=__docs__,
     long_description=long_description,
     long_description_content_type='text/markdown',

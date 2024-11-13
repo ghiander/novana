@@ -98,3 +98,14 @@ class HydrogenAdjuster(object):
         atom.SetFormalCharge(0)
         Chem.SanitizeMol(self.mol)
         Chem.rdmolops.SanitizeFlags.SANITIZE_NONE
+
+    @staticmethod
+    def adjust_atom_hs_before_split(atom, bond):
+        """
+        Increase the explicit hydrogens of an
+        atom by the rounded value of its bond type.
+
+        """
+        atom.SetNumExplicitHs(
+            atom.GetNumExplicitHs()
+            + int(bond.GetBondTypeAsDouble()))

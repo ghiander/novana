@@ -42,8 +42,7 @@ def test_exception_mixture_no_rings_scaffold():
 
 def test_exception_molecule_no_rings_scaffold():
     """Raises an error if no molecules with rings."""
-    smiles = "CCCCCCCCCCNC(=O)C[N+](C)(CCO)" \
-             "CCCCCCCCCC[N+](C)(CCO)CC(=O)NCCCCCCCCCC"
+    smiles = "CCCCCCCCCCNC(=O)C[N+](C)(CCO)CCCCCCCCCC[N+](C)(CCO)CC(=O)NCCCCCCCCCC"
     with pytest.raises(NonCyclicMoleculeError):
         scaffold_from_smiles(smiles)
 
@@ -57,7 +56,6 @@ def test_exception_mixture_no_rings_shape():
 
 def test_exception_molecule_no_rings_shape():
     """Raises an error if no molecules with rings."""
-    smiles = "CCCCCCCCCCNC(=O)C[N+](C)(CCO)" \
-             "CCCCCCCCCC[N+](C)(CCO)CC(=O)NCCCCCCCCCC"
+    smiles = "CCCCCCCCCCNC(=O)C[N+](C)(CCO)CCCCCCCCCC[N+](C)(CCO)CC(=O)NCCCCCCCCCC"
     with pytest.raises(NonCyclicMoleculeError):
         shape_from_smiles(smiles)
