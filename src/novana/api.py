@@ -8,7 +8,8 @@ from novana.enumerate import find_removable_groups
 from novana.enumerate import enumerate_substructures
 
 
-def enumerate_substructures_from_smiles(smiles, flatten_mol=True):
+def substructure_scaffolds_from_smiles(smiles, flatten_mol=True):
+    """Enumerates the partial scaffold decompositions of a molecule."""
     rwmol = create_rwmol_from_smiles(smiles, flatten_mol)
     removable_groups = find_removable_groups(rwmol)
     return enumerate_substructures(rwmol, removable_groups)

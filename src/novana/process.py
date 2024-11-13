@@ -44,15 +44,11 @@ class TerminalAtomRemover(object):
 
     @staticmethod
     def _is_atom_single_bonded(atom):
-        if atom.GetDegree() == 1:
-            return True
-        return False
+        return atom.GetDegree() == 1
 
     @staticmethod
     def _is_atom_multi_bonded(atom):
-        if atom.GetDegree() > 1:
-            return True
-        return False
+        return atom.GetDegree() > 1
 
     def _remove_single_bonded_atom_from_mol(self, single_bonded_atom,
                                             neighbour_atom, bond):
