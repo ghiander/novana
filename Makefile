@@ -12,3 +12,6 @@ upload:
 
 test:
 	pytest -svv
+
+install_local:
+	pip install dist/novana*.whl
