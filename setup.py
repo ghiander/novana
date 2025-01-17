@@ -2,7 +2,8 @@ from setuptools import find_packages, setup
 
 __docs__ = "NovAna (Novelty Analysis) is a cheminformatics tool that " \
            "that extends the decomposition of molecules into " \
-           "Bemis-Murcko frameworks (J. Med. Chem. 1996, 39, 15, 2887-2893)."
+           "Bemis-Murcko frameworks (J. Med. Chem. 1996, 39, 15, 2887-2893) " \
+           "and allows the enumeration of partially decomposed scaffolds."
 
 # read the contents of your README file
 from pathlib import Path

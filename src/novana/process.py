@@ -17,13 +17,17 @@ class TerminalAtomRemover(object):
 
         """
         init_atom_length = len(self.mol.GetAtoms())
-        final_atom_length = 0   # dummy length to start the while
+        final_atom_length = TerminalAtomRemover._set_dummy_length()
         while init_atom_length != final_atom_length:
             init_atom_length = len(self.mol.GetAtoms())
             self._remove_atoms()
             final_atom_length = len(self.mol.GetAtoms())
         Chem.SanitizeMol(self.mol)
         Chem.rdmolops.SanitizeFlags.SANITIZE_NONE
+
+    @staticmethod
+    def _set_dummy_length():
+        return 0  # dummy length to start the while loop
 
     def _remove_atoms(self):
         """
