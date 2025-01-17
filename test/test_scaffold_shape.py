@@ -6,8 +6,7 @@ from utils import mol_to_smiles
 
 def test_scaffold_1():
     """Scaffold decomposition."""
-    smiles = "COC(=O)N1CC2(C1)CS(=O)(=Nc1cc(C)c3c" \
-             "(Nc4ccc(F)cc4O[C@H](C)C(=O)NCC(F)(F)F)ncnc3c1)C2"
+    smiles = "COC(=O)N1CC2(C1)CS(=O)(=Nc1cc(C)c3c(Nc4ccc(F)cc4O[C@H](C)C(=O)NCC(F)(F)F)ncnc3c1)C2"
     result = mol_to_smiles(scaffold_from_smiles(smiles))
     expected = "c1ccc(Nc2ncnc3cc(N=S4CC5(CNC5)C4)ccc23)cc1"
     assert result == expected
@@ -15,8 +14,7 @@ def test_scaffold_1():
 
 def test_scaffold_2():
     """Scaffold decomposition."""
-    smiles = "P(=O)(OCc1ccc(cc1)OC(=O)c2ccccc2)" \
-             "(OCc3ccc(cc3)OC(=O)c4ccccc4)CCCC(=O)N(O)C"
+    smiles = "P(=O)(OCc1ccc(cc1)OC(=O)c2ccccc2)(OCc3ccc(cc3)OC(=O)c4ccccc4)CCCC(=O)N(O)C"
     result = mol_to_smiles(scaffold_from_smiles(smiles))
     expected = "c1ccc(COc2ccc(COPOCc3ccc(OCc4ccccc4)cc3)cc2)cc1"
     assert result == expected
@@ -24,8 +22,7 @@ def test_scaffold_2():
 
 def test_scaffold_3():
     """Scaffold decomposition."""
-    smiles = "C=C1CN(S(=O)(=O)c2ccc(C)cc2)CCCN" \
-             "(Cc2ccccc2)CCCN(S(=O)(=O)c2cccc(N(C)C)c2)C1"
+    smiles = "C=C1CN(S(=O)(=O)c2ccc(C)cc2)CCCN(Cc2ccccc2)CCCN(S(=O)(=O)c2cccc(N(C)C)c2)C1"
     result = mol_to_smiles(scaffold_from_smiles(smiles))
     expected = "c1ccc(CN2CCCN(Sc3ccccc3)CCCN(Sc3ccccc3)CCC2)cc1"
     assert result == expected
@@ -33,8 +30,7 @@ def test_scaffold_3():
 
 def test_scaffold_4():
     """Scaffold decomposition."""
-    smiles = "[O-]S(=O)(=O)C(O)[C@@H](NC(=O)[C@H](NC(=O)" \
-             "OC1(CCN(CC1)C(=O)OC(C)(C)C)CC)CC(C)C)C[C@@H]2CCNC2=O"
+    smiles = "[O-]S(=O)(=O)C(O)[C@@H](NC(=O)[C@H](NC(=O)OC1(CCN(CC1)C(=O)OC(C)(C)C)CC)CC(C)C)C[C@@H]2CCNC2=O"
     result = mol_to_smiles(scaffold_from_smiles(smiles))
     expected = "C(CNCOC1CCNCC1)NCCC1CCNC1"
     assert result == expected
@@ -42,8 +38,7 @@ def test_scaffold_4():
 
 def test_scaffold_5():
     """Scaffold decomposition."""
-    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)" \
-             "[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
+    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
     result = mol_to_smiles(scaffold_from_smiles(smiles))
     expected = "C1CCC2CCCC3(CC1)CCCC23"
     assert result == expected
@@ -51,9 +46,7 @@ def test_scaffold_5():
 
 def test_scaffold_6():
     """Scaffold decomposition."""
-    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)" \
-             r"c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)" \
-             r"/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
+    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
     result = mol_to_smiles(scaffold_from_smiles(smiles))
     expected = r"C1=CCCCC/C=C\C=C/C=C\CNC2=CCc3c(cccc3C2)CC=CCCC/C=C\CC1"
     assert result == expected
@@ -69,8 +62,7 @@ def test_scaffold_7():
 
 def test_scaffold_hetero_1():
     """Scaffold decomposition."""
-    smiles = "COC(=O)N1CC2(C1)CS(=O)(=Nc1cc(C)c3c" \
-             "(Nc4ccc(F)cc4O[C@H](C)C(=O)NCC(F)(F)F)ncnc3c1)C2"
+    smiles = "COC(=O)N1CC2(C1)CS(=O)(=Nc1cc(C)c3c(Nc4ccc(F)cc4O[C@H](C)C(=O)NCC(F)(F)F)ncnc3c1)C2"
     result = mol_to_smiles(scaffold_from_smiles(smiles,
                            generalise_heteroatoms=True))
     expected = "*1CC2(C1)C*(=*c1ccc3c(*c4ccccc4)*c*c3c1)C2"
@@ -79,8 +71,7 @@ def test_scaffold_hetero_1():
 
 def test_scaffold_hetero_2():
     """Scaffold decomposition."""
-    smiles = "P(=O)(OCc1ccc(cc1)OC(=O)c2ccccc2)" \
-             "(OCc3ccc(cc3)OC(=O)c4ccccc4)CCCC(=O)N(O)C"
+    smiles = "P(=O)(OCc1ccc(cc1)OC(=O)c2ccccc2)(OCc3ccc(cc3)OC(=O)c4ccccc4)CCCC(=O)N(O)C"
     result = mol_to_smiles(scaffold_from_smiles(smiles,
                            generalise_heteroatoms=True))
     expected = "*(*Cc1ccc(*Cc2ccccc2)cc1)*Cc1ccc(*Cc2ccccc2)cc1"
@@ -89,8 +80,7 @@ def test_scaffold_hetero_2():
 
 def test_scaffold_hetero_3():
     """Scaffold decomposition."""
-    smiles = "C=C1CN(S(=O)(=O)c2ccc(C)cc2)CCCN" \
-             "(Cc2ccccc2)CCCN(S(=O)(=O)c2cccc(N(C)C)c2)C1"
+    smiles = "C=C1CN(S(=O)(=O)c2ccc(C)cc2)CCCN(Cc2ccccc2)CCCN(S(=O)(=O)c2cccc(N(C)C)c2)C1"
     result = mol_to_smiles(scaffold_from_smiles(smiles,
                            generalise_heteroatoms=True))
     expected = "*(*1CCC*(*c2ccccc2)CCC*(Cc2ccccc2)CCC1)c1ccccc1"
@@ -99,8 +89,7 @@ def test_scaffold_hetero_3():
 
 def test_scaffold_hetero_4():
     """Scaffold decomposition."""
-    smiles = "[O-]S(=O)(=O)C(O)[C@@H](NC(=O)[C@H](NC(=O)" \
-             "OC1(CCN(CC1)C(=O)OC(C)(C)C)CC)CC(C)C)C[C@@H]2CCNC2=O"
+    smiles = "[O-]S(=O)(=O)C(O)[C@@H](NC(=O)[C@H](NC(=O)OC1(CCN(CC1)C(=O)OC(C)(C)C)CC)CC(C)C)C[C@@H]2CCNC2=O"
     result = mol_to_smiles(scaffold_from_smiles(smiles,
                            generalise_heteroatoms=True))
     expected = "*(C*C1CC*CC1)CC*CCC1C*CC1"
@@ -109,8 +98,7 @@ def test_scaffold_hetero_4():
 
 def test_scaffold_hetero_5():
     """Scaffold decomposition."""
-    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)" \
-             "[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
+    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
     result = mol_to_smiles(scaffold_from_smiles(smiles,
                            generalise_heteroatoms=True))
     expected = "C1CCC2CCCC3(CC1)CCCC23"
@@ -119,9 +107,7 @@ def test_scaffold_hetero_5():
 
 def test_scaffold_hetero_6():
     """Scaffold decomposition."""
-    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)" \
-             r"c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)" \
-             r"/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
+    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
     result = mol_to_smiles(scaffold_from_smiles(smiles,
                            generalise_heteroatoms=True))
     expected = r"*1C/C=C\C=C/C=C\CCCCC=CCC/C=C\CCCC=CCc2cccc3c2CC=C1C3"
@@ -198,9 +184,7 @@ def test_scaffold_charged_3():
 
 def test_scaffold_charged_4():
     """Scaffold decomposition."""
-    smiles = "C[C@H]1[C@H]2[C@H](C[C@H]3[C@@H]4CC=C5C[C@H]" \
-             "(n6cc[n+](Cc7ccccc7Br)c6)CC[C@]5(C)" \
-             "[C@H]4CC[C@@]32C)O[C@]12CC[C@@H](C)CO2"
+    smiles = "C[C@H]1[C@H]2[C@H](C[C@H]3[C@@H]4CC=C5C[C@H](n6cc[n+](Cc7ccccc7Br)c6)CC[C@]5(C)[C@H]4CC[C@@]32C)O[C@]12CC[C@@H](C)CO2"  # noqa: E501
     result = mol_to_smiles(scaffold_from_smiles(smiles))
     expected = "C1=C2CC(n3cc[n+](Cc4ccccc4)c3)" \
                "CCC2C2CCC3C4CC5(CCCCO5)OC4CC3C2C1"
@@ -225,8 +209,7 @@ def test_shape_1():
 
 def test_shape_2():
     """Shape decomposition."""
-    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)" \
-             "[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
+    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
     result = mol_to_smiles(shape_from_smiles(smiles))
     expected = "C1CCCC2CCCC3(C1)CCCC23"
     assert result == expected
@@ -234,9 +217,7 @@ def test_shape_2():
 
 def test_shape_3():
     """Shape decomposition."""
-    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)" \
-             r"c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)" \
-             r"/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
+    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
     result = mol_to_smiles(shape_from_smiles(smiles))
     expected = "C1CCCCCCCCCCCCC2CCC3C(CCCCCCCCCCC1)CCCC3C2"
     assert result == expected
@@ -253,8 +234,7 @@ def test_shape_types_1():
 
 def test_shape_types_2():
     """Shape decomposition."""
-    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)" \
-             "[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
+    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
     result = mol_to_smiles(shape_from_smiles(smiles,
                                              retain_atom_types=True))
     expected = "C1CCCC2CCCC3(C1)CCCC23"
@@ -263,9 +243,7 @@ def test_shape_types_2():
 
 def test_shape_types_3():
     """Shape decomposition."""
-    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)" \
-             r"c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)" \
-             r"/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
+    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
     result = mol_to_smiles(shape_from_smiles(smiles,
                                              retain_atom_types=True))
     expected = "C1CCCCCCCCCCCNC2CCC3C(CCCCCCCCCCC1)CCCC3C2"
@@ -274,8 +252,7 @@ def test_shape_types_3():
 
 def test_identical_scaffold_shape_1():
     """Scaffold and shape are identical."""
-    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)" \
-             "[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
+    smiles = "C[C@@H]1CC[C@@]23CCC(=O)[C@H]2[C@@]1(C)[C@@H](C[C@@](C)(C=C)[C@@H](O)[C@@H]3C)OC=O"
     scaffold = mol_to_inchikey(scaffold_from_smiles(smiles))
     shape = mol_to_inchikey(shape_from_smiles(smiles))
     assert scaffold == shape
@@ -283,25 +260,17 @@ def test_identical_scaffold_shape_1():
 
 def test_different_scaffold_tautomers_1():
     """Tautomers yield different scaffolds."""
-    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)" \
-             r"c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)" \
-             r"/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
+    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
     result_1 = mol_to_inchikey(scaffold_from_smiles(smiles))
-    smiles = r"CC1\C=C/C=C\C=C/C(=NC2=C(N)C(=O)c3c(cc(C)c" \
-             r"(O)c3C(=O)C(=CC(C)C(O)C(C)\C=C/C(O)CC=C(C)" \
-             r"C(=O)CC1O)C)C2=O)O"
+    smiles = r"CC1\C=C/C=C\C=C/C(=NC2=C(N)C(=O)c3c(cc(C)c(O)c3C(=O)C(=CC(C)C(O)C(C)\C=C/C(O)CC=C(C)C(=O)CC1O)C)C2=O)O"
     result_2 = mol_to_inchikey(scaffold_from_smiles(smiles))
     assert result_1 != result_2
 
 
 def test_identical_shape_tautomers_1():
     """Tautomers yield same shape."""
-    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)" \
-             r"c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)" \
-             r"/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
+    smiles = r"CC1=CCC(O)/C=C\C(C)C(O)C(C)C=C(C)C(=O)c2c(O)c(C)cc3c2C(=O)C(N)=C(NC(=O)/C=C\C=C/C=C\C(C)C(O)CC1=O)C3=O"
     result_1 = mol_to_inchikey(shape_from_smiles(smiles))
-    smiles = r"CC1\C=C/C=C\C=C/C(=NC2=C(N)C(=O)c3c(cc(C)c" \
-             r"(O)c3C(=O)C(=CC(C)C(O)C(C)\C=C/C(O)CC=C(C)" \
-             r"C(=O)CC1O)C)C2=O)O"
+    smiles = r"CC1\C=C/C=C\C=C/C(=NC2=C(N)C(=O)c3c(cc(C)c(O)c3C(=O)C(=CC(C)C(O)C(C)\C=C/C(O)CC=C(C)C(=O)CC1O)C)C2=O)O"
     result_2 = mol_to_inchikey(shape_from_smiles(smiles))
     assert result_1 == result_2

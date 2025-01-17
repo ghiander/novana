@@ -2,11 +2,15 @@
 
 
 ## Introduction
-**Novana** (Novelty Analysis) is a cheminformatics tool that allows decomposing *molecules* into their *scaffolds* and *shapes* in milliseconds. The method extends the functionalities of Bemis-Murcko scaffolds (*J. Med. Chem. 1996, 39, 15, 2887–2893*) by introducing more granularity on how atoms and bonds are treated during the decomposition. The implementation of these extra functionalities was inspired by the analysis described by Wills and Lipkus in *ACS Med. Chem. Lett. 2020, 11, 2114-2119*. Novana can be used to cluster molecule data sets across multiple levels of generalisation - as an alternative to similarity methods. The tool can be used for the analysis of data sets or the creation of train/validation sets for machine learning. 
+**Novana** (Novelty Analysis) is a cheminformatics tool that allows decomposing *molecules* into their *scaffolds* and *shapes*. The method extends the functionalities of Bemis-Murcko scaffolds (*J. Med. Chem. 1996, 39, 15, 2887–2893*) by introducing more granularity on how atoms and bonds are treated during the decomposition. The implementation of these extra functionalities was inspired by the analysis described by Wills and Lipkus in *ACS Med. Chem. Lett. 2020, 11, 2114-2119*. Novana can be used to cluster molecule data sets across multiple levels of generalisation - as an alternative to similarity methods. The tool can be used for the analysis of data sets or the creation of train/validation sets for machine learning.
 
 Here is an example of structural decomposition using different flavours of Novana also compared with the Bemis-Murcko decomposition in RDKit (`MurckoScaffoldSmiles()`):
 
-![Example of usage](https://github.com/ghiander/novana/blob/main/docs/static/example.png?raw=true)
+![Example of usage 1](https://github.com/ghiander/novana/blob/main/docs/static/example_1.png?raw=true)
+
+**Novana** was also extended to perform the partial decomposition of molecules into their *scaffolds*, i.e., for a given input molecule, a list of children molecules processed on isolated portions is enumerated. The partial scaffold enumeration can be used to remove sections of an input molecule yielding a set of children that can be analysed in networks or using distance methods. An example of partial scaffold enumeration is provided as follows.
+
+![Example of usage 2](https://github.com/ghiander/novana/blob/main/docs/static/example_2.png?raw=true)
 
 ## Method
 For a given SMILES input (*molecule*):
@@ -21,6 +25,8 @@ For a given SMILES input (*molecule*):
 - A *shape* is finally produced as a further decomposition by converting all its atoms into single bonded, non-aromatic, neutral carbons.
 
 Novana also deals with mixtures automatically by extracting the largest fragment containing rings and using it as input to the decomposition. If no structures with rings are found in the input SMILES, Novana throws an error.
+
+When running the enumerator of partial decompositions, the algorithm first identifies all terminal atoms and stores their positions as starting points. The algorithm then iterates through the starting points. For each starting point, a copy of the input molecule is created, and the logic performs a recursive removal as described for the *scaffold* only in that region.
 
 ## How to install the tool
 Novana can be installed from pypi (https://pypi.org/project/novana).
@@ -71,6 +77,13 @@ shape_from_smiles(smiles)
 from novana.api import molecule_scaffold_shape_from_smiles
 mol, sfl, shp = molecule_scaffold_shape_from_smiles(smiles)
 ```
+
+```python
+# Enumerate partially decomposed scaffolds
+from novana.api import substructure_scaffolds_from_smiles
+substructure_scaffolds_from_smiles(smiles)
+```
+![Example of partial scaffold enumeration](https://github.com/ghiander/novana/blob/main/docs/static/example_enumeration.png?raw=true)
 
 ## License
 Distributed under the terms of the `MIT license`. *Novana* is free and open-source software.

@@ -4,6 +4,15 @@ from novana.core import convert_into_single_bonded_atoms
 from novana.core import convert_heteroatoms_to_stars
 from novana.core import create_rwmol_from_smiles
 from novana.core import recursively_remove_single_bonded_atoms
+from novana.enumerate import find_removable_groups
+from novana.enumerate import enumerate_substructures
+
+
+def substructure_scaffolds_from_smiles(smiles, flatten_mol=True):
+    """Enumerates the partial scaffold decompositions of a molecule."""
+    rwmol = create_rwmol_from_smiles(smiles, flatten_mol)
+    removable_groups = find_removable_groups(rwmol)
+    return enumerate_substructures(rwmol, removable_groups)
 
 
 def scaffold_from_smiles(smiles, flatten_mol=True,

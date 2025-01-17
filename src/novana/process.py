@@ -1,3 +1,4 @@
+from novana.valence import HydrogenAdjuster
 from rdkit import Chem
 
 
@@ -16,13 +17,17 @@ class TerminalAtomRemover(object):
 
         """
         init_atom_length = len(self.mol.GetAtoms())
-        final_atom_length = 0   # dummy length to start the while
+        final_atom_length = TerminalAtomRemover._set_dummy_length()
         while init_atom_length != final_atom_length:
             init_atom_length = len(self.mol.GetAtoms())
             self._remove_atoms()
             final_atom_length = len(self.mol.GetAtoms())
         Chem.SanitizeMol(self.mol)
         Chem.rdmolops.SanitizeFlags.SANITIZE_NONE
+
+    @staticmethod
+    def _set_dummy_length():
+        return 0  # dummy length to start the while loop
 
     def _remove_atoms(self):
         """
@@ -43,36 +48,19 @@ class TerminalAtomRemover(object):
 
     @staticmethod
     def _is_atom_single_bonded(atom):
-        if atom.GetDegree() == 1:
-            return True
-        return False
+        return atom.GetDegree() == 1
 
     @staticmethod
     def _is_atom_multi_bonded(atom):
-        if atom.GetDegree() > 1:
-            return True
-        return False
+        return atom.GetDegree() > 1
 
     def _remove_single_bonded_atom_from_mol(self, single_bonded_atom,
                                             neighbour_atom, bond):
-        neighbour_atom = \
-            TerminalAtomRemover._adjust_atom_hs_before_split(
-                neighbour_atom, bond)
+        HydrogenAdjuster.adjust_atom_hs_before_split(
+            neighbour_atom, bond)
         self.mol.RemoveBond(single_bonded_atom.GetIdx(),
                             neighbour_atom.GetIdx())
         self.mol.RemoveAtom(single_bonded_atom.GetIdx())
-
-    @staticmethod
-    def _adjust_atom_hs_before_split(atom, bond):
-        """
-        Increase the explicit hydrogens of an
-        atom by the rounded value of its bond type.
-
-        """
-        atom.SetNumExplicitHs(
-            atom.GetNumExplicitHs()
-            + int(bond.GetBondTypeAsDouble()))
-        return atom
 
 
 class AtomConverter:
