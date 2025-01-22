@@ -35,6 +35,7 @@ pip install novana
 ```
 
 ## Usage
+### Full decomposition
 ```python
 # Example of input SMILES
 from rdkit import Chem
@@ -78,6 +79,7 @@ from novana.api import molecule_scaffold_shape_from_smiles
 mol, sfl, shp = molecule_scaffold_shape_from_smiles(smiles)
 ```
 
+### Partial decomposition
 ```python
 # Enumerate partially decomposed scaffolds
 from novana.api import substructure_scaffolds_from_smiles
