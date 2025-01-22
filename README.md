@@ -4,10 +4,12 @@
 ## Introduction
 **Novana** (Novelty Analysis) is a cheminformatics tool that allows decomposing *molecules* into their *scaffolds* and *shapes*. The method extends the functionalities of Bemis-Murcko scaffolds (*J. Med. Chem. 1996, 39, 15, 2887–2893*) by introducing more granularity on how atoms and bonds are treated during the decomposition. The implementation of these extra functionalities was inspired by the analysis described by Wills and Lipkus in *ACS Med. Chem. Lett. 2020, 11, 2114-2119*. Novana can be used to cluster molecule data sets across multiple levels of generalisation - as an alternative to similarity methods. The tool can be used for the analysis of data sets or the creation of train/validation sets for machine learning.
 
+### Full decomposition
 Here is an example of structural decomposition using different flavours of Novana also compared with the Bemis-Murcko decomposition in RDKit (`MurckoScaffoldSmiles()`):
 
 ![Example of usage 1](https://github.com/ghiander/novana/blob/main/docs/static/example_1.png?raw=true)
 
+### Partial decomposition
 **Novana** was also extended to perform the partial decomposition of molecules into their *scaffolds*, i.e., for a given input molecule, a list of children molecules processed on isolated portions is enumerated. The partial scaffold enumeration can be used to remove sections of an input molecule yielding a set of children that can be analysed in networks or using distance methods. An example of partial scaffold enumeration is provided as follows.
 
 ![Example of usage 2](https://github.com/ghiander/novana/blob/main/docs/static/example_2.png?raw=true)
