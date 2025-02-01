@@ -96,4 +96,4 @@ Distributed under the terms of the `MIT license`. *Novana* is free and open-sour
 - The package can be installed from the wheel in the `dist/` folder. When a new version needs to be released, a new wheel must be built. That can be done by changing the version of the package inside `setup.py` then calling `python setup.py bdist_wheel` and `python setup.py sdist` which will create a new build.
 - The code can be automatically tested using `python setup.py test` which requires `pytest` to be installed
 - The `Makefile` can also be used for building (`make build`) or testing (`make test`)
-- Before committing new code, please always check that the formatting is consistent using `flake8`
+- Before committing new code, please always check that the style and syntax are compliant using `flake8`

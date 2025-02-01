@@ -1,3 +1,5 @@
+from typing import Tuple
+from rdkit.Chem.rdchem import Mol
 from novana.core import adjust_hydrogens
 from novana.core import convert_into_single_bonded_carbons
 from novana.core import convert_into_single_bonded_atoms
@@ -8,15 +10,14 @@ from novana.enumerate import find_removable_groups
 from novana.enumerate import enumerate_substructures
 
 
-def substructure_scaffolds_from_smiles(smiles, flatten_mol=True):
+def substructure_scaffolds_from_smiles(smiles: str, flatten_mol: bool = True) -> list:
     """Enumerates the partial scaffold decompositions of a molecule."""
     rwmol = create_rwmol_from_smiles(smiles, flatten_mol)
     removable_groups = find_removable_groups(rwmol)
     return enumerate_substructures(rwmol, removable_groups)
 
 
-def scaffold_from_smiles(smiles, flatten_mol=True,
-                         generalise_heteroatoms=False):
+def scaffold_from_smiles(smiles: str, flatten_mol: bool = True, generalise_heteroatoms: bool = False) -> Mol:
     """Returns the scaffold of a molecule."""
     rwmol = create_rwmol_from_smiles(smiles, flatten_mol)
     recursively_remove_single_bonded_atoms(rwmol)
@@ -26,8 +27,7 @@ def scaffold_from_smiles(smiles, flatten_mol=True,
     return rwmol.GetMol()
 
 
-def shape_from_smiles(smiles, flatten_mol=True,
-                      retain_atom_types=False):
+def shape_from_smiles(smiles: str, flatten_mol: bool = True, retain_atom_types: bool = False) -> Mol:
     """Returns the shape of a molecule."""
     rwmol = create_rwmol_from_smiles(smiles, flatten_mol)
     recursively_remove_single_bonded_atoms(rwmol)
@@ -38,11 +38,11 @@ def shape_from_smiles(smiles, flatten_mol=True,
     return rwmol.GetMol()
 
 
-def molecule_scaffold_shape_from_smiles(smiles,
-                                        flatten_mol=True):
+def molecule_scaffold_shape_from_smiles(smiles: str, flatten_mol: bool = True) -> Tuple[Mol, Mol, Mol]:
     """Returns molecule, scaffold, and shape of a molecule."""
     rwmol = create_rwmol_from_smiles(smiles, flatten_mol)
     mol = rwmol.GetMol()
+
     # Get scaffold and clean it
     recursively_remove_single_bonded_atoms(rwmol)
     adjust_hydrogens(rwmol)
@@ -51,4 +51,5 @@ def molecule_scaffold_shape_from_smiles(smiles,
     # Convert scaffold into shape
     convert_into_single_bonded_carbons(rwmol)
     shape = rwmol.GetMol()
+
     return mol, scaffold, shape

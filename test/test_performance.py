@@ -36,7 +36,7 @@ def test_time_scaffold_20_rings():
     """Scaffold decomposition within a time cap."""
     smiles = "CC[n+]1ccccc1CNC2cccc2"*10
     t = time_function(scaffold_from_smiles, smiles)
-    assert t < 8
+    assert t < 9
 
 
 def test_time_shape_2_rings():

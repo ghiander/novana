@@ -20,7 +20,7 @@ setup(
     author="Gian Marco Ghiandoni",
     author_email="ghiandoni.g@gmail.com",
     license="MIT",
-    install_requires=["rdkit"],
+    install_requires=["rdkit", "typing"],
     setup_requires=["pytest-runner", "flake8"],
     tests_require=["pytest==7.1.2"],
     test_suite="test",
