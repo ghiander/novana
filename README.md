@@ -10,7 +10,7 @@ Here is an example of structural decomposition using different flavours of Novan
 ![Example of usage 1](https://github.com/ghiander/novana/blob/main/docs/static/example_1.png?raw=true)
 
 ### Partial decomposition
-**Novana** was also extended to perform the partial decomposition of molecules into their *scaffolds*, i.e., for a given input molecule, a list of children molecules processed on isolated portions is enumerated. The partial scaffold enumeration can be used to remove sections of an input molecule yielding a set of children that can be analysed in networks or using distance methods. An example of partial scaffold enumeration is provided as follows.
+**Novana** was also extended to perform the partial decomposition of molecules into their *scaffolds*, i.e., for a given input molecule, a list of children molecules processed on isolated portions is enumerated. The partial scaffold enumeration can be used to remove sections of an input molecule yielding a set of children. Children in turn can be recursively decomposed if desired, creating an extended set of decompositions that can be analysed in networks or using distance methods. An example of partial scaffold enumeration is provided as follows.
 
 ![Example of usage 2](https://github.com/ghiander/novana/blob/main/docs/static/example_2.png?raw=true)
 
